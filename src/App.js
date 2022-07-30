@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef, useEffect } from 'react';
 
 function App() {
+
+  const [name, setName] = useState('');
+  // const inputRef = useRef();
+  const prevName = useRef('');
+
+  useEffect(() => {
+    prevName.current = name
+  }, [name])
+
+  // function focus() {
+  //   inputRef.current.focus()
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <input ref={inputRef} value={name} onChange={e => setName(e.target.value)}/> */}
+      <input value={name} onChange={e => setName(e.target.value)}/>
+      <div>My name is {name} and it used to be {prevName.current}</div>
+      {/* <button onClick={focus}>Focus</button> */}
+    </>
   );
 }
 
